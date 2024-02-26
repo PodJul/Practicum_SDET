@@ -5,36 +5,37 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.elements.Wait;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CustomersPages {
+public class CustomersPages extends Wait {
     WebDriver driver;
 
-    @FindBy(xpath = ".//tr[contains (@ng-repeat,'cust in Customers ')]/td[1]")
+    @FindBy(xpath = ".//tbody/tr/td[1]")
     private List<WebElement> firstNames;
 
-    @FindBy(xpath = ".//tr[contains (@ng-repeat,'cust in Customers ')]/td[2]")
+    @FindBy(xpath = ".//tbody/tr/td[2]")
     private List<WebElement> lastNames;
 
-    @FindBy(xpath = ".//tr[contains (@ng-repeat,'cust in Customers ')]/td[3]")
+    @FindBy(xpath = ".//tbody/tr/td[3]")
     private List<WebElement> postCodes;
 
     @FindBy(xpath = ".//a[contains (@ng-click,'fName')]")
     private WebElement firstNameButton;
 
     public CustomersPages(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     @Step("Wait for load customers page")
-    public void waitForLoadCustomersPage() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(firstNameButton));
+    public CustomersPages waitForLoadCustomersPage() {
+        waitUntilClickable(driver,firstNameButton);
+        return this;
     }
 
     List<String> customersNames = new ArrayList<>();

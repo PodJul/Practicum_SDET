@@ -9,85 +9,94 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.elements.Wait;
 
-public class RegistrationPage {
+public class RegistrationPage extends Wait {
     WebDriver driver;
 
-    @FindBy(xpath = ".//input[@placeholder='First Name']")
+    @FindBy(xpath = ".//*[@ng-model='fName']")
     private WebElement firstNameField;
 
-    @FindBy(xpath = ".//input[@placeholder='Last Name']")
+    @FindBy(xpath = ".//*[@ng-model='lName']")
     private WebElement lastNameField;
 
-    @FindBy(xpath = ".//input[@placeholder='Post Code']")
+    @FindBy(xpath = ".//*[@ng-model='postCd']")
     private WebElement postCodeField;
 
-    @FindBy(xpath = ".//div[@class='marTop']//button[contains(text(),'Add Customer')]")
+    @FindBy(xpath = ".//*[text()='Add Customer']")
     private WebElement addButton;
 
     public RegistrationPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
 
     @Step("Wait for load registration page")
-    public void waitForLoadRegPage() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(firstNameField));
+    public RegistrationPage waitForLoadRegPage() {
+        waitUntilClickable(driver, firstNameField);
+        return this;
     }
 
     @Step("Set first name")
-    public void setFirstName(String firstName) {
+    public RegistrationPage setFirstName(String firstName) {
         firstNameField.sendKeys(firstName);
+        return this;
     }
 
     @Step("Set last name")
-    public void setLastName(String lastName) {
+    public RegistrationPage setLastName(String lastName) {
         lastNameField.sendKeys(lastName);
+        return this;
     }
 
     @Step("Set post code")
-    public void setPostCode(String postCode) {
+    public RegistrationPage setPostCode(String postCode) {
         postCodeField.sendKeys(postCode);
+        return this;
     }
 
     @Step("Click add customer button")
-    public void clickAddButton() {
+    public RegistrationPage clickAddButton() {
         addButton.click();
+        return this;
     }
 
     @Step("Create customer")
-    public void createCustomer(String lastName, String postCode) {
-        waitForLoadRegPage();
-        setFirstName(TestData.createFirstName(postCode));
-        setLastName(lastName);
-        setPostCode(postCode);
-        clickAddButton();
+    public RegistrationPage createCustomer(String lastName, String postCode) {
+        waitForLoadRegPage()
+                .setFirstName(TestData.createFirstName(postCode))
+                .setLastName(lastName)
+                .setPostCode(postCode)
+                .clickAddButton();
+        return this;
     }
 
     @Step("Create customer")
     public void createCustomer2(String firstName, String lastName, String postCode) {
-        waitForLoadRegPage();
-        setFirstName(firstName);
-        setLastName(lastName);
-        setPostCode(postCode);
-        clickAddButton();
+        waitForLoadRegPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setPostCode(postCode)
+                .clickAddButton();
     }
+
     @Step("Create double customer")
     public void createDoubleCustomer(String firstName, String lastName, String postCode) {
-        waitForLoadRegPage();
-        setFirstName(firstName);
-        setLastName(lastName);
-        setPostCode(postCode);
-        clickAddButton();
-        String doubleFirstName=firstName;
-        String doubleLastName=lastName;
-        String doublePostCode=postCode;
-        acceptAlert();
-        setFirstName(doubleFirstName);
-        setLastName(doubleLastName);
-        setPostCode(doublePostCode);
-        clickAddButton();
+        String doubleFirstName = firstName;
+        String doubleLastName = lastName;
+        String doublePostCode = postCode;
+        waitForLoadRegPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setPostCode(postCode)
+                .clickAddButton()
+                .acceptAlert()
+                .setFirstName(doubleFirstName)
+                .setLastName(doubleLastName)
+                .setPostCode(doublePostCode)
+                .clickAddButton();
     }
 
     @Step("Switch to alert and get text")
@@ -98,9 +107,10 @@ public class RegistrationPage {
     }
 
     @Step("Accept the alert")
-    public void acceptAlert() {
+    public RegistrationPage acceptAlert() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.accept();
+        return this;
     }
 }

@@ -34,7 +34,6 @@ public class TestData {
                 firstName[i] = (map.get(key - 78));
             }
         }
-
         return String.join("", firstName);
     }
 }

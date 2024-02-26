@@ -8,81 +8,80 @@ import org.junit.Test;
 import pages.CustomersPages;
 import pages.HomePage;
 import pages.RegistrationPage;
-import pages.elements.BaseData;
+import pages.elements.BaseTest;
 import pages.elements.TestData;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @Epic("Add customer tests")
-public class NewCustomerTests extends BaseData {
-    HomePage objHomePage;
-    RegistrationPage objRegPage;
-    CustomersPages objCustPage;
+public class NewCustomerTests extends BaseTest {
+    HomePage homePage;
+    RegistrationPage regPage;
+    CustomersPages custPage;
 
     @Before
     public void setUp() {
-        objHomePage = new HomePage(driver);
-        objRegPage = new RegistrationPage(driver);
-        objCustPage = new CustomersPages(driver);
+        homePage = new HomePage(driver);
+        regPage = new RegistrationPage(driver);
+        custPage = new CustomersPages(driver);
     }
 
-    @Feature("Positive tests")
+    @Feature("Tests with filled fields")
     @Test
     @DisplayName("Create new customer")
     public void createNewCustomer() {
-        objHomePage.clickAddCustomerButton();
-        objRegPage.createCustomer(TestData.fakeLastName, TestData.fakePostCode);
-        assertTrue(objRegPage.getTextFromAlert().contains("Customer added successfully with customer id :"));
+        homePage.clickAddCustomerButton();
+        regPage.createCustomer(TestData.fakeLastName, TestData.fakePostCode);
+        assertTrue(regPage.getTextFromAlert().contains("Customer added successfully with customer id :"));
     }
 
-    @Feature("Positive tests")
+    @Feature("Tests with filled fields")
     @Test
     @DisplayName("Create double customer")
     public void createDoubleCustomer() {
-        objHomePage.clickAddCustomerButton();
-        objRegPage.createDoubleCustomer(TestData.fakeFirstName, TestData.fakeLastName, TestData.fakePostCode);
-        assertEquals("Please check the details. Customer may be duplicate.", objRegPage.getTextFromAlert());
+        homePage.clickAddCustomerButton();
+        regPage.createDoubleCustomer(TestData.fakeFirstName, TestData.fakeLastName, TestData.fakePostCode);
+        assertEquals("Please check the details. Customer may be duplicate.", regPage.getTextFromAlert());
     }
 
-    @Feature("Negative tests")
+    @Feature("Tests with empty fields")
     @Test
     @DisplayName("Create new customer with empty fields")
     public void createNewCustomerWithEmptyFields() {
-        objHomePage.clickAddCustomerButton();
-        objRegPage.createCustomer2("", "", "");
-        objHomePage.clickCustomersButton();
-        assertEquals(false, objCustPage.checkNullFirstName());
+        homePage.clickAddCustomerButton();
+        regPage.createCustomer2("", "", "");
+        homePage.clickCustomersButton();
+        assertFalse(custPage.checkNullFirstName());
     }
 
-    @Feature("Negative tests")
+    @Feature("Tests with empty fields")
     @Test
     @DisplayName("Create new customer with empty first name field")
     public void createNewCustomerWithEmptyFirstNameField() {
-        objHomePage.clickAddCustomerButton();
-        objRegPage.createCustomer2("", TestData.fakeLastName, TestData.fakePostCode);
-        objHomePage.clickCustomersButton();
-        assertEquals(false, objCustPage.checkNullFirstName());
+        homePage.clickAddCustomerButton();
+        regPage.createCustomer2("", TestData.fakeLastName, TestData.fakePostCode);
+        homePage.clickCustomersButton();
+        assertFalse(custPage.checkNullFirstName());
 
     }
 
-    @Feature("Negative tests")
+    @Feature("Tests with empty fields")
     @Test
     @DisplayName("Create new customer with empty last name field")
     public void createNewCustomerWithEmptyLastNameField() {
-        objHomePage.clickAddCustomerButton();
-        objRegPage.createCustomer2(TestData.fakeFirstName, "", TestData.fakePostCode);
-        objHomePage.clickCustomersButton();
-        assertEquals(false, objCustPage.checkNullLastName());
+        homePage.clickAddCustomerButton();
+        regPage.createCustomer2(TestData.fakeFirstName, "", TestData.fakePostCode);
+        homePage.clickCustomersButton();
+        assertFalse(custPage.checkNullLastName());
     }
 
-    @Feature("Negative tests")
+    @Feature("Tests with empty fields")
     @Test
     @DisplayName("Create new customer with empty post code field")
     public void createNewCustomerWithEmptyPostCodeField() {
-        objHomePage.clickAddCustomerButton();
-        objRegPage.createCustomer2(TestData.fakeFirstName, TestData.fakeLastName, "");
-        objHomePage.clickCustomersButton();
-        assertEquals(false, objCustPage.checkNullPostCode());
+        homePage.clickAddCustomerButton();
+        regPage.createCustomer2(TestData.fakeFirstName, TestData.fakeLastName, "");
+        homePage.clickCustomersButton();
+        assertFalse(custPage.checkNullPostCode());
     }
 }

@@ -7,31 +7,33 @@ import org.junit.Test;
 import pages.CustomersPages;
 import pages.HomePage;
 import pages.RegistrationPage;
-import pages.elements.BaseData;
+import pages.elements.BaseTest;
+import pages.elements.TestData;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @Epic("Sort by first name tests")
-public class SortFirstNameTests extends BaseData {
-    HomePage objHomePage;
-    RegistrationPage objRegPage;
-    CustomersPages objCustPage;
+public class SortFirstNameTests extends BaseTest {
+    HomePage homePage;
+    RegistrationPage regPage;
+    CustomersPages custPage;
 
     @Before
     public void setUp() {
-        objHomePage = new HomePage(driver);
-        objRegPage = new RegistrationPage(driver);
-        objCustPage = new CustomersPages(driver);
+        homePage = new HomePage(driver);
+        regPage = new RegistrationPage(driver);
+        custPage = new CustomersPages(driver);
     }
 
     @Test
     @DisplayName("Sort customers by first name")
     public void sortCustomersNames() {
-        objHomePage.clickCustomersButton();
-        objCustPage.waitForLoadCustomersPage();
-        List<String> customerFirstName = objCustPage.getCustomersNames();
-        assertEquals(false, objCustPage.isSorted(customerFirstName));
+        homePage.clickCustomersButton();
+        List<String> customerFirstName = custPage
+                .waitForLoadCustomersPage()
+                .getCustomersNames();
+        assertFalse(custPage.isSorted(customerFirstName));
     }
 }

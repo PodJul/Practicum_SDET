@@ -7,32 +7,32 @@ import org.junit.Test;
 import pages.CustomersPages;
 import pages.HomePage;
 import pages.RegistrationPage;
-import pages.elements.BaseData;
+import pages.elements.BaseTest;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @Epic("Delete customer tests")
-public class DeleteCustomerTests extends BaseData {
-    HomePage objHomePage;
-    RegistrationPage objRegPage;
-    CustomersPages objCustPage;
+public class DeleteCustomerTests extends BaseTest {
+    HomePage homePage;
+    RegistrationPage regPage;
+    CustomersPages custPage;
 
     @Before
     public void setUp() {
-        objHomePage = new HomePage(driver);
-        objRegPage = new RegistrationPage(driver);
-        objCustPage = new CustomersPages(driver);
+        homePage = new HomePage(driver);
+        regPage = new RegistrationPage(driver);
+        custPage = new CustomersPages(driver);
     }
 
     @Test
     @DisplayName("Delete customer by first name length")
     public void deleteCustomersByFirstNameLength() {
-        objHomePage.clickCustomersButton();
-        objCustPage.waitForLoadCustomersPage();
-        List<String> customerFirstName = objCustPage.getCustomersNames();
-        objCustPage.isCustomerDelete(customerFirstName);
-        assertEquals(false, objCustPage.isCustomerDelete(customerFirstName));
+        homePage.clickCustomersButton();
+        List<String> customerFirstName = custPage
+                .waitForLoadCustomersPage()
+                .getCustomersNames();
+        assertFalse(custPage.isCustomerDelete(customerFirstName));
     }
 }
