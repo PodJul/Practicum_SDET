@@ -1,4 +1,4 @@
-package tests;
+package tests.api.tests;
 
 import helpers.Specification;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package tests;
+package tests.api.tests;
 
 import pages.elements.EntityMethods;
 import pages.elements.TestDataAPI;
@@ -8,6 +8,7 @@ import io.restassured.response.ValidatableResponse;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Test;
+import tests.api.tests.SetupTest;
 
 import static java.lang.Integer.parseInt;
 import static org.hamcrest.CoreMatchers.equalTo;

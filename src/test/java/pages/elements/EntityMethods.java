@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import pogo.AllEntitiesResponse;
 import pogo.Entity;
-import tests.SetupTest;
+import tests.api.tests.SetupTest;
 
 import static io.restassured.RestAssured.given;
 
