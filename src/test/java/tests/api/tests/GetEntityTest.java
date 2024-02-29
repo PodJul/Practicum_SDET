@@ -1,4 +1,4 @@
-package tests;
+package tests.api.tests;
 
 import pages.elements.EntityMethods;
 import pages.elements.TestDataAPI;
