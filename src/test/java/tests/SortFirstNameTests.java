@@ -8,7 +8,6 @@ import pages.CustomersPages;
 import pages.HomePage;
 import pages.RegistrationPage;
 import pages.elements.BaseTest;
-import pages.elements.TestData;
 
 import java.util.List;
 
