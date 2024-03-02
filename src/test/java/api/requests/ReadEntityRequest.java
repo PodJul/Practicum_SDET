@@ -3,7 +3,6 @@ package api.requests;
 import api.pogo.AllEntitiesResponse;
 import api.pogo.EntityResponse;
 import io.qameta.allure.Step;
-import io.restassured.response.ValidatableResponse;
 import org.assertj.core.api.SoftAssertions;
 
 import static io.restassured.RestAssured.given;
@@ -126,7 +125,7 @@ public class ReadEntityRequest {
 
     }
 
-    @Step("Send GET request to /api/getAll with parameters and check statusCode")
+    @Step("Check title and verified fields")
 
     public void checkTitlesAndVerified(AllEntitiesResponse getAllResponseWithParam,String testTitle,boolean testVerified) {
 

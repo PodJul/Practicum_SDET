@@ -6,8 +6,9 @@ import api.requests.ReadEntityRequest;
 import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Класс теста получения всех сущностей
@@ -47,7 +48,7 @@ public class GetAllEntitiesTests extends BaseApiTest {
     public void getAllEntitiesWithoutParameters() {
 
         getAllResponse = readEntityRequest.getAllEntitiesWithoutParams();
-        Assert.assertTrue(getAllResponse.getEntity().size() > 0);
+        assertThat(getAllResponse.getEntity().size() > 0);
     }
 
     /**

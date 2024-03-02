@@ -5,8 +5,9 @@ import api.requests.CreateEntityRequest;
 import api.requests.DeleteEntityRequest;
 import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Класс теста удаления сущности
@@ -48,6 +49,6 @@ public class DeleteEntityTest extends BaseApiTest {
 
         entityId = createEntityRequest.createNewEntity(TestData.entity);
         removalResponse = deleteEntityRequest.deleteEntityById(entityId);
-        Assert.assertTrue(removalResponse.isBlank());
+        assertThat(removalResponse.isBlank());
     }
 }

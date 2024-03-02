@@ -6,9 +6,9 @@ import api.requests.DeleteEntityRequest;
 import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 /**
@@ -45,7 +45,7 @@ public class CreateEntityTest extends BaseApiTest {
     public void createNewEntity() {
 
         entityId = createEntityRequest.createNewEntity(TestData.entity);
-        Assert.assertTrue(notNullValue().matches(entityId));
+        assertThat(notNullValue().matches(entityId));
     }
 
     /**
