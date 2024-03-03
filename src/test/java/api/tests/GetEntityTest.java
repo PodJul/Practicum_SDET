@@ -21,31 +21,16 @@ import static java.lang.Integer.parseInt;
  */
 @Epic("Get entity test")
 public class GetEntityTest extends BaseApiTest {
-
-    /**
-     * Экземпляр класса CreateEntityRequest
-     */
-
+    //Экземпляр класса CreateEntityRequest
     CreateEntityRequest createEntityRequest = new CreateEntityRequest();
-    /**
-     * Экземпляр класса DeleteEntityRequest
-     */
-
+    //Экземпляр класса DeleteEntityRequest
     DeleteEntityRequest deleteEntityRequest = new DeleteEntityRequest();
-    /**
-     * Экземпляр класса ReadEntityRequest
-     */
-
+    //Экземпляр класса ReadEntityRequest
     ReadEntityRequest readEntityRequest = new ReadEntityRequest();
-    /**
-     * /**
-     * Экземпляр класса мягких ассертов
-     */
+    //Экземпляр класса мягких ассертов
     SoftAssertions softAssertion = new SoftAssertions();
-    /**
-     * id созданной сущности
-     */
-        String entityId;
+    //id созданной сущности
+    String entityId;
 
     /**
      * Тестирует корректное получение сущности: код ответа 200,
@@ -56,19 +41,15 @@ public class GetEntityTest extends BaseApiTest {
     @Test
     @DisplayName("Get entity and check body of response")
     public void getEntity() {
-
         entityId = createEntityRequest.createNewEntity(TestData.entity);
-        /**
-         * Тело ответа после запроса сущности по ее id
-         */
+        //Тело ответа после запроса сущности по ее id
         EntityResponse getResponse = readEntityRequest.getEntityById(entityId);
         softAssertion.assertThat(getResponse.getId().equals(parseInt(entityId)));
         softAssertion.assertThat(getResponse.getAddition().getAdditionalInfo().equals(TestData.fakeEntityAddInfo));
-        softAssertion.assertThat(getResponse.getAddition().getAdditionalNumber()==TestData.fakeEntityAddNumber);
+        softAssertion.assertThat(getResponse.getAddition().getAdditionalNumber() == TestData.fakeEntityAddNumber);
         softAssertion.assertThat(getResponse.getImportantNumbers().equals(TestData.fakeImportantNumbers));
         softAssertion.assertThat(getResponse.getTitle().equals(TestData.fakeTitle));
         softAssertion.assertThat(Boolean.compare(getResponse.isVerified(), TestData.fakeVerified) == 0);
-
     }
 
     /**

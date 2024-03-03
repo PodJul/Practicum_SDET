@@ -21,8 +21,7 @@ public class DeleteEntityRequest {
      *
      * @param id {@link DeleteEntityRequest#id}
      */
-    public DeleteEntityRequest( String id) {
-
+    public DeleteEntityRequest(String id) {
         this.id = id;
     }
 
@@ -30,7 +29,6 @@ public class DeleteEntityRequest {
      * Дефолтный конструктор
      */
     public DeleteEntityRequest() {
-
     }
 
     /**

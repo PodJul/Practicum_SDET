@@ -5,23 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Класс дополнительной информации о событии
  *
- * @version 1.0
  * @author Юлия Подычан
+ * @version 1.0
  */
 public class Addition {
-
     /**
      * Поле "Дополнительные сведения о сущности"
      */
     @JsonProperty("additional_info")
     private String additionalInfo;
-
     /**
      * Поле "Дополнительное число для сущности"
      */
     @JsonProperty("additional_number")
     private int additionalNumber;
-
     /**
      * Поле "id дополнительной информации"
      */
@@ -78,7 +75,6 @@ public class Addition {
      *
      * @param additionalNumber дополнительное число для сущности
      */
-
     public void setAdditionalNumber(int additionalNumber) {
         this.additionalNumber = additionalNumber;
     }
@@ -100,6 +96,4 @@ public class Addition {
     public void setId(int id) {
         this.id = id;
     }
-
-
 }

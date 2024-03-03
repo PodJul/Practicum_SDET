@@ -18,14 +18,9 @@ public class ReadEntityRequest {
      * Поле "id"
      */
     private String id;
-
-    /**
-     * Тело ответа после запроса всех сущностей с применением фильтров
-     */
+    //Тело ответа после запроса всех сущностей с применением фильтров
     AllEntitiesResponse getAllResponseWithParam;
-    /**
-     * Экземпляр класса мягких ассертов
-     */
+    //Экземпляр класса мягких ассертов
     SoftAssertions softAssertion = new SoftAssertions();
 
     /**
@@ -34,7 +29,6 @@ public class ReadEntityRequest {
      * @param id {@link ReadEntityRequest#id}
      */
     public ReadEntityRequest(String id) {
-
         this.id = id;
     }
 
@@ -42,7 +36,6 @@ public class ReadEntityRequest {
      * Дефолтный конструктор
      */
     public ReadEntityRequest() {
-
     }
 
     /**
@@ -98,7 +91,6 @@ public class ReadEntityRequest {
                 .extract()
                 .response()
                 .as(AllEntitiesResponse.class);
-
     }
 
     /**
@@ -111,7 +103,6 @@ public class ReadEntityRequest {
      * @return возвращает массив всех сущностей на определенной странице в заданном количестве (шт. на стр.)
      */
     @Step("Send GET request to /api/getAll with parameters and check statusCode")
-
     public AllEntitiesResponse getAllEntitiesWithParams(String title, boolean verified, int page, int perPage) {
         return given()
                 .queryParams("title", title, "verified", verified, "page", page, "perPage", perPage)
@@ -122,13 +113,9 @@ public class ReadEntityRequest {
                 .extract()
                 .response()
                 .as(AllEntitiesResponse.class);
-
     }
-
     @Step("Check title and verified fields")
-
-    public void checkTitlesAndVerified(AllEntitiesResponse getAllResponseWithParam,String testTitle,boolean testVerified) {
-
+    public void checkTitlesAndVerified(AllEntitiesResponse getAllResponseWithParam, String testTitle, boolean testVerified) {
         for (int i = 0; i < getAllResponseWithParam.getEntity().size(); i++) {
             softAssertion.assertThat(getAllResponseWithParam.getEntity().get(i).getTitle().equals(testTitle));
             softAssertion.assertThat(Boolean.compare(getAllResponseWithParam.getEntity().get(i).isVerified(),

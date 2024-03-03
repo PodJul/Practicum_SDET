@@ -22,35 +22,17 @@ import static java.lang.Integer.parseInt;
  */
 @Epic("Update entity test")
 public class UpdateEntityTest extends BaseApiTest {
-
-
-    /**
-     * Экземпляр класса CreateEntityRequest
-     */
-
+    //Экземпляр класса CreateEntityRequest
     CreateEntityRequest createEntityRequest = new CreateEntityRequest();
-    /**
-     * Экземпляр класса DeleteEntityRequest
-     */
-
+    //Экземпляр класса DeleteEntityRequest
     DeleteEntityRequest deleteEntityRequest = new DeleteEntityRequest();
-    /**
-     * Экземпляр класса ReadEntityRequest
-     */
-
+    //Экземпляр класса ReadEntityRequest
     UpdateEntityRequest updateEntityRequest = new UpdateEntityRequest();
-    /**
-     * Экземпляр класса ReadEntityRequest
-     */
-
+    //Экземпляр класса ReadEntityRequest
     ReadEntityRequest readEntityRequest = new ReadEntityRequest();
-    /**
-     * id созданной сущности
-     */
+    //id созданной сущности
     String entityId;
-    /**
-     * Экземпляр класса мягких ассертов
-     */
+    //Экземпляр класса мягких ассертов
     SoftAssertions softAssertion = new SoftAssertions();
 
     /**
@@ -60,29 +42,21 @@ public class UpdateEntityTest extends BaseApiTest {
      *
      * @see UpdateEntityRequest#updateEntityById(CreateEntityRequest newEntity, String entityId)
      */
-
     @Test
     @DisplayName("Update entity and check body of response")
     public void updateEntity() {
-
         entityId = createEntityRequest.createNewEntity(TestData.entity);
-        /**
-         * Тело ответа после обновления сущности
-         */
+        //Тело ответа после обновления сущности
         String updateResponse = updateEntityRequest.updateEntityById(TestData.newEntity, entityId);
         softAssertion.assertThat(updateResponse.isBlank());
-        /**
-         * Тело ответа после запроса сущности по ее id
-         */
+        //Тело ответа после запроса сущности по ее id
         EntityResponse getResponse = readEntityRequest.getEntityById(entityId);
-
         softAssertion.assertThat(getResponse.getId().equals(parseInt(entityId)));
         softAssertion.assertThat(getResponse.getAddition().getAdditionalInfo().equals(TestData.newFakeEntityAddInfo));
-        softAssertion.assertThat(getResponse.getAddition().getAdditionalNumber()==TestData.newFakeEntityAddNumber);
+        softAssertion.assertThat(getResponse.getAddition().getAdditionalNumber() == TestData.newFakeEntityAddNumber);
         softAssertion.assertThat(getResponse.getImportantNumbers().equals(TestData.newFakeImportantNumbers));
         softAssertion.assertThat(getResponse.getTitle().equals(TestData.newFakeTitle));
         softAssertion.assertThat(Boolean.compare(getResponse.isVerified(), TestData.newFakeVerified) == 0);
-
     }
 
     /**

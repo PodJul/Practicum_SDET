@@ -15,23 +15,19 @@ import static io.restassured.RestAssured.given;
  * @version 1.0
  */
 public class CreateEntityRequest {
-
     /**
      * Поле "Дополнительная информация о событии"
      */
     private Addition addition;
-
     /**
      * Поле "Коллекция важных чисел"
      */
     @JsonProperty("important_numbers")
     private List<Integer> importantNumbers;
-
     /**
      * Поле "Заголовок"
      */
     private String title;
-
     /**
      * Поле "Статус верификации"
      */
@@ -46,7 +42,6 @@ public class CreateEntityRequest {
      * @param verified         {@link CreateEntityRequest#verified}
      */
     public CreateEntityRequest(Addition addition, List<Integer> importantNumbers, String title, boolean verified) {
-
         this.addition = addition;
         this.importantNumbers = importantNumbers;
         this.title = title;
@@ -57,7 +52,6 @@ public class CreateEntityRequest {
      * Дефолтный конструктор
      */
     public CreateEntityRequest() {
-
     }
 
     /**
@@ -115,7 +109,6 @@ public class CreateEntityRequest {
      * @param title заголовок
      * @return возвращает сущность с заголовком
      */
-
     public CreateEntityRequest setTitle(String title) {
         this.title = title;
         return this;
@@ -156,6 +149,5 @@ public class CreateEntityRequest {
                 .then()
                 .statusCode(200)
                 .extract().body().asString();
-
     }
 }

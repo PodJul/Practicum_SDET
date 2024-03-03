@@ -10,7 +10,6 @@ import java.util.List;
  * @version 1.0
  */
 public class AllEntitiesResponse {
-
     /**
      * Поле "Коллекция сущностей"
      */
@@ -57,7 +56,6 @@ public class AllEntitiesResponse {
      *
      * @param entity коллекция сущностей
      */
-
     public void setEntity(List<EntityResponse> entity) {
         this.entity = entity;
     }
@@ -76,7 +74,6 @@ public class AllEntitiesResponse {
      *
      * @param page номер страницы
      */
-
     public void setPage(int page) {
         this.page = page;
     }

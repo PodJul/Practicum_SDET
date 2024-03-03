@@ -17,24 +17,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @Epic("Delete entity test")
 public class DeleteEntityTest extends BaseApiTest {
-    /**
-     * Экземпляр класса CreateEntityRequest
-     */
-
+    //Экземпляр класса CreateEntityRequest
     CreateEntityRequest createEntityRequest = new CreateEntityRequest();
-
-    /**
-     * Экземпляр класса DeleteEntityRequest
-     */
-
+    //Экземпляр класса DeleteEntityRequest
     DeleteEntityRequest deleteEntityRequest = new DeleteEntityRequest();
-    /**
-     * id созданной сущности
-     */
+    //id созданной сущности
     String entityId;
-    /**
-     * тело ответа после удаления
-     */
+    //Тело ответа после удаления
     String removalResponse;
 
     /**
@@ -42,11 +31,9 @@ public class DeleteEntityTest extends BaseApiTest {
      *
      * @see DeleteEntityRequest#deleteEntityById(String entityId)
      */
-
     @Test
     @DisplayName("Delete entity and check body of response")
     public void deleteEntity() {
-
         entityId = createEntityRequest.createNewEntity(TestData.entity);
         removalResponse = deleteEntityRequest.deleteEntityById(entityId);
         assertThat(removalResponse.isBlank());

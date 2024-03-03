@@ -19,20 +19,11 @@ import static org.hamcrest.CoreMatchers.notNullValue;
  */
 @Epic("Create entity test")
 public class CreateEntityTest extends BaseApiTest {
-
-    /**
-     * Экземпляр класса CreateEntityRequest
-     */
-
+    //Экземпляр класса CreateEntityRequest
     CreateEntityRequest createEntityRequest = new CreateEntityRequest();
-    /**
-     * Экземпляр класса DeleteEntityRequest
-     */
-
+    //Экземпляр класса DeleteEntityRequest
     DeleteEntityRequest deleteEntityRequest = new DeleteEntityRequest();
-    /**
-     * id созданной сущности
-     */
+    //id созданной сущности
     String entityId;
 
     /**
@@ -43,7 +34,6 @@ public class CreateEntityTest extends BaseApiTest {
     @Test
     @DisplayName("Create new entity and check body of response")
     public void createNewEntity() {
-
         entityId = createEntityRequest.createNewEntity(TestData.entity);
         assertThat(notNullValue().matches(entityId));
     }

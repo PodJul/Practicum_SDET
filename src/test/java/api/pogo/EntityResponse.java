@@ -13,7 +13,6 @@ import java.util.List;
  */
 
 public class EntityResponse {
-
     /**
      * Поле "id сущности"
      */
@@ -39,7 +38,7 @@ public class EntityResponse {
     /**
      * Конструктор - создание нового объекта с определенными значениями
      *
-     * @param id{@link EntityResponse#id}
+     * @param id{@link         EntityResponse#id}
      * @param addition         {@link EntityResponse#addition}
      * @param importantNumbers {@link EntityResponse#importantNumbers}
      * @param title            {@link EntityResponse#title}
@@ -51,13 +50,12 @@ public class EntityResponse {
         this.importantNumbers = importantNumbers;
         this.title = title;
         this.verified = verified;
-
     }
+
     /**
      * Дефолтный конструктор
      */
     public EntityResponse() {
-
     }
 
     /**
@@ -68,12 +66,12 @@ public class EntityResponse {
     public String getId() {
         return id;
     }
+
     /**
      * Функция установления значения поля {@link EntityResponse#id}
      *
      * @param id id сущности
      */
-
     public void setId(String id) {
         this.id = id;
     }
@@ -83,64 +81,64 @@ public class EntityResponse {
      *
      * @return возвращает дополнительную информацию о событии
      */
-
     public Addition getAddition() {
         return addition;
     }
+
     /**
      * Функция установления значения поля {@link EntityResponse#addition}
      *
      * @param addition дополнительная информация о событии
      */
-
     public void setAddition(Addition addition) {
         this.addition = addition;
     }
+
     /**
      * Функция получения значения поля {@link EntityResponse#importantNumbers}
      *
      * @return возвращает коллекцию важных чисел
      */
-
     public List<Integer> getImportantNumbers() {
         return importantNumbers;
     }
+
     /**
      * Функция установления значения поля {@link EntityResponse#importantNumbers}
      *
      * @param importantNumbers коллекция важных чисел
      */
-
     public void setImportantNumbers(List<Integer> importantNumbers) {
         this.importantNumbers = importantNumbers;
     }
+
     /**
      * Функция получения значения поля {@link EntityResponse#title}
      *
      * @return возвращает заголовок
      */
-
     public String getTitle() {
         return title;
     }
+
     /**
      * Функция установления значения поля {@link EntityResponse#title}
      *
      * @param title заголовок
      */
-
     public void setTitle(String title) {
         this.title = title;
     }
+
     /**
      * Функция получения значения поля {@link EntityResponse#verified}
      *
      * @return возвращает статус верификации
      */
-
     public boolean isVerified() {
         return verified;
     }
+
     /**
      * Функция установления значения поля {@link EntityResponse#verified}
      *
@@ -149,5 +147,4 @@ public class EntityResponse {
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
-
 }
